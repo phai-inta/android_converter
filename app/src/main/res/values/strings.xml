@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">TempConverter</string>
+    <string name="app_name">Converter</string>
+    <string name="label1">Inches to Centimetres</string>
+    <string name="label2">Feet to Inches</string>
+    <string name="label3">Miles to Feet</string>
+    <string name="convert_1">Convert</string>
+    <string name="metre">metre(s)</string>
+    <string name="inche_input">inche</string>
+    <string name="foot_input">foot</string>
+    <string name="mile_input">mile</string>
 </resources>

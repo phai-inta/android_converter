@@ -2,66 +2,156 @@ package au.edu.swin.sdmd.tempconverter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-// TODO #1 Set up all the views needed: EditText for the celsius value, a Button and a TextView for the fahrenheit value.
-// TODO #1a limit keyboard entry for celsius value.
-
-// TODO #2 Record UI tests and edit.
-
-// TODO #4 Create the conversion class/model.
-// TODO #4a Write unit tests and run.
-// TODO #4b Finalise the model.
-
-// TODO #7 Create new landscape layout using ConstraintLayout.
-
 public class MainActivity extends AppCompatActivity {
 
-    // TODO #5 create a local variable to store the model.
     Conversion conversion = new Conversion();
-
-    // TODO #3 add initializeUI() call.
+    private CheckBox inche2Metre;
+    private CheckBox feet2Metre;
+    private CheckBox mile2Metre;
+    private TextView cm;
+    private TextView inches;
+    private TextView feet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initialiseUI();
+        initialiseUI(savedInstanceState);
     }
 
-    // TODO #3a Connect up the button listener here.
-    // TODO #6c Refactor to restore state.
-    void initialiseUI() {
-        Button convert = findViewById(R.id.bConvert);
-        convert.setOnClickListener(clickListener);
+    void initialiseUI(Bundle state) {
+        if (state != null) {
+            restoreState(state);
+        }
+
+        Button inchesConvert = findViewById(R.id.inchesConvert);
+        inchesConvert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                convertInches2Cm();
+            }
+        });
+
+        Button feetConvert = findViewById(R.id.feetConvert);
+        feetConvert.setOnClickListener(feetClickListener);
+
+        Button mileConvert = findViewById(R.id.mileConvert);
+        mileConvert.setOnClickListener(mileClickListener);
     }
 
-    // TODO #3b write click listener using anonymous class
-    View.OnClickListener clickListener = new View.OnClickListener() {
+    View.OnClickListener feetClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            convertValue();
+            convertFeet2Inches();
         }
     };
 
+    View.OnClickListener mileClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            convertMile2Feet();
+        }
+    };
 
-    // TODO #3c write a function to process button click using dummy data. Run app.
-    // TODO #5a Fix up the actual data using the model.
-    // TODO #5b run UI tests again
-    void convertValue() {
-        EditText celsius = findViewById(R.id.etCelsius);
-        String sFahrenheit = conversion.toFahrenheit(celsius.getText().toString());
-        TextView fahrenheit = findViewById(R.id.tvFahrenheit);
-        fahrenheit.setText(sFahrenheit + " F");
+    //called by runtime when the activity is paused and save data to the Bundle
+    @Override
+    protected void onSaveInstanceState(Bundle state){
+        cm = findViewById(R.id.cmView);
+        inches = findViewById(R.id.inchesView);
+        feet = findViewById(R.id.feetView);
+
+        String sCm = cm.getText().toString();
+        String sInche = inches.getText().toString();
+        String sFeet = feet.getText().toString();
+
+        state.putString("CM", sCm);
+        state.putString("INCHE", sInche);
+        state.putString("FOOT", sFeet);
+        super.onSaveInstanceState(state);
+    }
+
+    private void restoreState(Bundle state){
+        String savedCm = state.getString("CM");
+        String savedInche = state.getString("INCHE");
+        String savedFoot = state.getString("FOOT");
+
+        inche2Metre = findViewById(R.id.inchetoMetre);
+        feet2Metre = findViewById(R.id.feet2Metre);
+        mile2Metre = findViewById(R.id.mile2Metre);
+
+        if (!inche2Metre.isChecked()) {
+            cm = findViewById(R.id.cmView);
+            cm.setText(savedCm);
+        } else {
+            cm = findViewById(R.id.cmView);
+            cm.setText(savedCm);
+        }
+
+        if (!feet2Metre.isChecked()) {
+            inches = findViewById(R.id.inchesView);
+            inches.setText(savedInche);
+        } else {
+            inches = findViewById(R.id.inchesView);
+            inches.setText(savedInche);
+        }
+
+        if (!mile2Metre.isChecked()) {
+            feet = findViewById(R.id.feetView);
+            feet.setText(savedFoot);
+        } else {
+            feet = findViewById(R.id.feetView);
+            feet.setText(savedFoot);
+        }
+        Log.i("savedState: ", savedCm + "/" + savedInche + "/" + savedFoot);
     }
 
 
+    void convertInches2Cm() {
+        EditText inches = findViewById(R.id.incheInput);
+        inche2Metre = findViewById(R.id.inchetoMetre);
+        if (!inche2Metre.isChecked()) {
+            String sCm = conversion.toCentimeter(inches.getText().toString());
+            cm = findViewById(R.id.cmView);
+            cm.setText(sCm);
+        } else {
+            String sCm = conversion.inche2Metre(inches.getText().toString());
+            cm = findViewById(R.id.cmView);
+            cm.setText(sCm);
+        }
+    }
 
-    // TODO #6 write UI test for orientation change.
-    // TODO #6a Update the saved instance state here.
+    void convertFeet2Inches() {
+        EditText feet = findViewById(R.id.feetInput);
+        feet2Metre = findViewById(R.id.feet2Metre);
+        if (!feet2Metre.isChecked()) {
+            String sInches = conversion.toInches(feet.getText().toString());
+            inches = findViewById(R.id.inchesView);
+            inches.setText(sInches);
+        } else {
+            String sInches = conversion.feet2Metre(feet.getText().toString());
+            inches = findViewById(R.id.inchesView);
+            inches.setText(sInches);
+        }
+    }
 
-    // TODO #6b write a function to restore state here.
+    void convertMile2Feet() {
+        EditText mile = findViewById(R.id.mileInput);
+        mile2Metre = findViewById(R.id.mile2Metre);
+        if (!mile2Metre.isChecked()) {
+            String sFeet = conversion.toFeet(mile.getText().toString());
+            feet = findViewById(R.id.feetView);
+            feet.setText(sFeet);
+        } else {
+            String sFeet = conversion.mile2Metre(mile.getText().toString());
+            feet = findViewById(R.id.feetView);
+            feet.setText(sFeet);
+        }
+    }
 }

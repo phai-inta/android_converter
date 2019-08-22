@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">คำนวณการแปลง</string>
+    <string name="label1">นิ้ว -> เซ็นติเมตร</string>
+    <string name="label2">ฟุต -> นิ้ว</string>
+    <string name="label3">ไมล์ -> ฟุต</string>
+    <string name="convert_1">แปลง</string>
+    <string name="metre">เมตร</string>
+    <string name="inche_input">นิ้ว</string>
+    <string name="mile_input">ไมล์</string>
+    <string name="foot_input">ฟุต</string>
+</resources>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity">
 
@@ -16,24 +16,23 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="300dp"
+            android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp">
 
-        <ImageView
-            android:id="@+id/enButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="16dp"
+            <ImageView
+                android:id="@+id/enButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
 
-            app:srcCompat="@drawable/uk" />
+                app:srcCompat="@drawable/uk" />
 
-        <ImageView
-            android:id="@+id/thButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:srcCompat="@drawable/th" />
+            <ImageView
+                android:id="@+id/thButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/th" />
         </TableRow>
-
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
@@ -46,31 +45,29 @@
 
         <EditText
             android:id="@+id/incheInput"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/inche_input"
+            android:hint="inche"
             android:inputType="numberSigned|numberDecimal" />
 
         <CheckBox
             android:id="@+id/inchetoMetre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/metre"
-            tools:text="@string/metre" />
+            android:text="Metre(s)" />
 
         <Button
             android:id="@+id/inchesConvert"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="@string/convert_1"
-            tools:text="@string/convert_1" />
+            android:text="Convert" />
 
         <TextView
             android:id="@+id/cmView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0.0 centimerter(s)"
+            android:text="0.0 cm"
             android:textSize="30sp" />
 
         <Space
@@ -90,30 +87,29 @@
 
         <EditText
             android:id="@+id/feetInput"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/foot_input"
+            android:hint="foot"
             android:inputType="numberSigned|numberDecimal" />
 
         <CheckBox
             android:id="@+id/feet2Metre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/metre"
-            tools:text="@string/metre" />
+            android:text="Metre(s)" />
 
         <Button
             android:id="@+id/feetConvert"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="@string/convert_1" />
+            android:text="Convert" />
 
         <TextView
             android:id="@+id/inchesView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0.0 inche(s)"
+            android:text="0.0 inches"
             android:textSize="30sp" />
 
         <Space
@@ -132,30 +128,29 @@
 
         <EditText
             android:id="@+id/mileInput"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/mile_input"
+            android:hint="mile"
             android:inputType="numberSigned|numberDecimal" />
 
         <CheckBox
             android:id="@+id/mile2Metre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/metre"
-            tools:text="@string/metre" />
+            android:text="Metre(s)" />
 
         <Button
             android:id="@+id/mileConvert"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="@string/convert_1" />
+            android:text="Convert" />
 
         <TextView
             android:id="@+id/feetView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0.0 inche(s)"
+            android:text="0.0 inches"
             android:textSize="30sp" />
 
     </LinearLayout>
